@@ -1,0 +1,45 @@
+html {
+    background-color: #e2e2e2;
+    margin: 0;
+    padding: 0;
+
+    height:100%;
+    width:100%;
+}
+
+body {
+    background-color: #fff;
+    border-top: solid 10px #000;
+    color: #333;
+    font-family:"HP Simplified" ;
+    margin: 0;
+    padding: 0;
+    height:100%;
+    width:100%;
+}
+
+h1{
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+}
+
+#wrap {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -20px;
+    background-color: white;
+}
+#push, #footer {
+    height: 30px;
+}
+
+footer {
+    clear: both;
+    background-color: rgba(199, 199, 199, 0.82);
+    text-align:left;
+    height: 100px;
+}

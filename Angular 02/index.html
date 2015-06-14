@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html ng-app="WeatherApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/Site.css">
+
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+
+
+    <title>{{"Weather Report"}}</title>
+</head>
+<body>
+
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Weather Report</a>
+        </div>
+        <div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#">Page 1</a></li>
+                <li><a href="#">Page 2</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div id="wrap">
+
+    <div class="container">
+        <header>
+            <div class="page-header">
+                <h1>Weather Report</h1>
+            </div>
+        </header>
+
+
+
+        <div ng-controller="WeatherCtrl">
+            <p> The weather report for San Jose, CR would be:</p>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <p class="textMain">
+                        {{date | date:'EEEE, MMMM dd ,yyyy '}}
+                    </p>
+                    <p class="textMain">
+                       {{ weatherArray[0].temp.day}}&deg;C
+                    </p>
+                </div>
+                <div class="col-sm-6 ">
+                    <img class="TodayImage" src="images/{{weatherArray[0].weather[0].icon}}.png">
+                </div>
+
+            </div>
+
+
+            <div class="well row">
+
+                 <div class="col-sm-1">
+                     <img  class="TomorrowImage"src="images/{{weatherArray[1].weather[0].icon}}.png">
+                 </div>
+                <div class="col-sm-8">
+                    Tomorrow
+                </div>
+                <div class="col-sm-2">
+                    {{ weatherArray[1].temp.day}}&deg;C
+                </div>
+
+            </div>
+            <div id="push"></div>
+        </div>
+
+    </div>
+    <footer id="footer">
+        <div>
+            <p>&copy; Developed with AngularJs and Twitter Bootstrap</p>
+        </div>
+    </footer>
+
+
+</div>
+
+
+
+</body>
+</html>

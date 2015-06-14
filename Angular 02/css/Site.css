@@ -1,0 +1,82 @@
+html {
+    background-color: #e2e2e2;
+    margin: 0;
+    padding: 0;
+
+    height:100%;
+    width:100%;
+}
+
+body {
+    background-color: #fff;
+    border-top: solid 10px #000;
+    color: #333;
+    font-family:"HP Simplified" ;
+    margin: 0;
+    padding: 0;
+    height:100%;
+    width:100%;
+
+}
+
+
+.TodayImage{
+    width: 175px !important;
+    height: 175px!important;
+}
+.TomorrowImage{
+    width: 100px !important;
+    height: 100px!important;
+}
+
+.textMain{
+    font-size: 35px !important;
+    color: #337ab7;
+    margin-top: 20px !important;
+
+}
+.well{
+    padding: 0px 0px 0px 0px!important;
+
+
+}
+.well .col-sm-8{
+padding-left: 65px;
+    padding-top: 30px;
+    font-size: large;
+}
+.well .col-sm-2{
+    padding-left: 65px;
+    padding-top: 30px;
+    font-size: large;
+}
+
+h1{
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+}
+p{
+    font-size: large ;
+    text-align: center !important;
+    margin-top: 35px ;
+}
+#wrap {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -20px;
+    background-color: white;
+}
+#push, #footer {
+    height: 30px;
+}
+
+footer {
+    clear: both;
+    background-color: rgba(199, 199, 199, 0.82);
+    text-align:left;
+    height: 100px;
+}

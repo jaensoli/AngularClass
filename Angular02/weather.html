@@ -41,8 +41,23 @@
 
 
 
+
+
         <div ng-controller="WeatherCtrl">
-            <p> The weather report for San Jose, CR would be:</p>
+
+
+
+            <div class=form-group">
+                <label class="cols-sm-2 control-label">Select the city:</label>
+                <select ng-model="city" ng-change="selectCity()">
+
+                    <option ng-repeat="item in citiesArray" value="{{item}}">{{item}}</option>
+                </select>
+            </div>
+
+
+
+            <p> The weather report for {{city}}, CR would be:</p>
 
             <div class="row">
                 <div class="col-sm-6">
@@ -59,6 +74,24 @@
 
             </div>
 
+            <div class="row">
+                <div class="col-sm-3"></div>
+                <table id="weatherTable" class="table-bordered table-striped col-sm-5">
+                    <tr>
+                        <td>Description</td>
+                        <td>{{weatherArray[0].weather[0].description}}</td>
+                    </tr>
+                    <tr>
+                        <td>Pressure</td>
+                        <td>{{weatherArray[0].pressure}} hpa</td>
+                    </tr>
+                    <tr>
+                        <td>Humidity</td>
+                        <td>{{weatherArray[0].humidity}} %</td>
+                    </tr>
+
+                </table>
+            </div>
 
             <div class="well row">
 

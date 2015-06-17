@@ -14,11 +14,12 @@ app.config(function($httpProvider) {
 
 app.factory('WeatherFactory',['$http','$q',function($http, $q){
 
-    var url='http://api.openweathermap.org/data/2.5/forecast/daily?q=San%20Jose,cr&mode=json&units=metric&cnt=2';
 
     return {
 
-        getWeather: function () {
+        getWeather: function (city) {
+
+            var url='http://api.openweathermap.org/data/2.5/forecast/daily?q='+city+',cr&mode=json&units=metric&cnt=2';
 
             var defer = $q.defer();
 
@@ -36,6 +37,27 @@ app.factory('WeatherFactory',['$http','$q',function($http, $q){
                 });
 
             return defer.promise;
+        },
+        getWeatherSelect: function (city) {
+
+            var url='http://api.openweathermap.org/data/2.5/forecast/daily?q='+city+',cr&mode=json&units=metric&cnt=2';
+
+            var defer2 = $q.defer();
+
+            $http({
+                method:'GET',
+                url:url,
+                dataType: 'jsonp',
+                headers: {'Content-Type': 'application/json'}
+            }).
+                success(function(data, status, headers, config){
+                    defer2.resolve(data);
+                }).
+                error(function(data, status, headers, config){
+                    defer2.reject(data);
+                });
+
+            return defer2.promise;
         }
 
     }
@@ -48,9 +70,28 @@ app.factory('WeatherFactory',['$http','$q',function($http, $q){
 app.controller('WeatherCtrl',['$scope','WeatherFactory',function($scope,WeatherFactory){
     $scope.date = new Date();
 
-    WeatherFactory.getWeather().then (function (data) {
-        $scope.weatherArray= data.list;
+    $scope.citiesArray=["San Jose","Alajuela","Heredia","Cartago","Puntarenas","Limon","Guanacaste"];
+
+    $scope.city="San Jose";
+
+    WeatherFactory.getWeather($scope.city).then (function (data) {
+        $scope.weatherArray = data.list;
     });
+
+
+    $scope.selectCity= function(){
+        var tesT=$scope.city;
+        WeatherFactory.getWeatherSelect($scope.city).then (function (data) {
+            $scope.weatherArray = data.list;
+        });
+
+    };
+
+
+
+
+
+
 
 
 

@@ -23,6 +23,12 @@ button{
 }
 
 
+#weatherTable{
+    font-size: large ;
+    text-align: center !important;
+    margin-bottom: 50px;
+}
+
 .TodayImage{
     width: 175px !important;
     height: 175px!important;

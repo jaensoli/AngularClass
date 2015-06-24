@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html ng-app="loan">
+<head lang="en">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/Site.css">
+
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/loan.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <title>{{"Loan Management"}}</title>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Main</a>
+        </div>
+        <div>
+            <ul class="nav navbar-nav">
+                <li><a href="weather.html">Weather</a></li>
+                <li class="active"><a href="#">Loan Management</a></li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div id="wrap">
+    <div class="container">
+    <header>
+        <div class="page-header">
+            <h1>Loan Management Tool</h1>
+        </div>
+    </header>
+
+    <div ng-controller="ClientCtrl" class="container row">
+        <div class="col-sm-6">
+        <h2 class="text-primary">Clients</h2>
+            <div ng-repeat="clie in client"  class="well well-sm">
+                    <p> Name: {{clie.name}}</p>
+                    <p>Age: {{clie.age}}</p>
+                    <p>Amount: ${{clie.amount}}</p>
+                    <p>Email: {{clie.email}}</p>
+                     <button type="button" class="btn btn-danger"  ng-click="DeleteArray($index)">Delete</button>
+
+                    </br>
+                    </br>
+            </div>
+
+        </div>
+        <div class="col-sm-2"></div>
+        <form name="userForm" class="form-horizontal col-sm-4" ng-submit="AddArray(userForm.$valid)" role="form" novalidate>
+            <div class="form-group" ng-class="{ 'has-error' : userForm.NewName.$invalid && !userForm.NewName.$pristine, 'has-success': !userForm.NewName.$invalid }" >
+                <h2 class="text-primary">Add New Client</h2>
+                <label class="cols-sm-2 control-label">Name:</label>
+                <input type="text"name="NewName" placeholder="Type your name" class="form-control" ng-model="NewName" required/>
+                <p ng-show="userForm.NewName.$invalid && !userForm.NewName.$pristine" class="help-block">You name is required.</p>
+            </div>
+
+            <div class="form-group" ng-class="{ 'has-error' : userForm.NewAge.$invalid && !userForm.NewAge.$pristine , 'has-success': !userForm.NewAge.$invalid && !userForm.NewAge.$pristine}">
+                <label class="cols-sm-2 control-label">Age:</label>
+                <input type="number" max="105" min="1" name="NewAge"  placeholder="Pick your age" class="form-control" ng-model="NewAge" ng-maxlength="3" ng-minlength="1" />
+                <p ng-show="userForm.NewAge.$error.maxlength" class="help-block">Your age is too long</p>
+                <p ng-show="userForm.NewAge.$error.number" class="help-block">Your age is not a number</p>
+
+            </div>
+
+            <div class="form-group" ng-class="{ 'has-error' : userForm.NewAmount.$invalid && !userForm.NewAmount.$pristine  , 'has-success': !userForm.NewAmount.$invalid}">
+                <label class="cols-sm-2 control-label">Amount: $</label>
+                <input type="text"  name="NewAmount" placeholder="Type your amount" class="form-control" ng-model="NewAmount" required integer/>
+                <p ng-show="userForm.NewAmount.$error.required && !userForm.NewAmount.$pristine" class="help-block">You Amount is required.</p>
+                <p ng-show="userForm.NewAmount.$error.integer" class="help-block">Your amount is not numeric</p>
+            </div>
+
+            <div class="form-group" ng-class="{ 'has-error' : userForm.NewEmail.$invalid && !userForm.NewEmail.$pristine , 'has-success': !userForm.NewEmail.$invalid}">
+                <label class="cols-sm-2 control-label">Email: </label>
+                <input type="email" name="NewEmail" placeholder="Type your email" class="form-control" ng-model="NewEmail" required/>
+                <p ng-show="userForm.NewEmail.$invalid && !userForm.NewEmail.$pristine" class="help-block">Please enter a Valid Email </p>
+                <p ng-show="userForm.NewEmail.$error.required && !userForm.NewEmail.$pristine" class="help-block">You Amount is required.</p>
+
+            </div>
+
+                </br>
+                <button type="submit" class="btn btn-info" ng-disabled="userForm.$invalid">Add</button>
+                <button type="button" class="btn btn-info" ng-disabled="userForm.$invalid"  ng-click="Clear()">Clear</button>
+
+        </form>
+
+        </div>
+    </div>
+    <div id="push"></div>
+</div>
+<footer id="footer">
+    <div>
+        <p>&copy; Developed with AngularJs and Twitter Bootstrap</p>
+    </div>
+</footer>
+
+</body>
+</html>

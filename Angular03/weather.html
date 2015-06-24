@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html ng-app="WeatherApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/Site.css">
+
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/weather.js"></script>
+
+
+    <title>{{"Weather Report"}}</title>
+</head>
+<body>
+
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Main</a>
+        </div>
+        <div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Weather</a></li>
+                <li><a href="loan.html">Loan Management</a></li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div id="wrap">
+
+    <div class="container">
+        <header>
+            <div class="page-header">
+                <h1>Weather Report</h1>
+            </div>
+        </header>
+
+
+
+
+
+        <div ng-controller="WeatherCtrl">
+
+
+
+            <div class=form-group">
+                <label class="cols-sm-2 control-label">Select the city:</label>
+                <select ng-model="city" ng-change="selectCity()">
+
+                    <option ng-repeat="item in citiesArray" value="{{item}}">{{item}}</option>
+                </select>
+
+
+            </div>
+
+
+
+            <p> The weather report for {{city}} would be:</p>
+            <div class=form-group">
+                <label class="cols-sm-2 control-label">Type the filter:</label>
+                <input type="text" ng-model="searchArg" class="form-control textbox" placeholder="Filter">
+            </div>
+
+            <div class="well" ng-repeat="items in weatherArray | filter:searchArg">
+                <div class="row">
+                    <div class=" col-sm-6">
+                        <p class="textMain">
+                            {{(items.dt+"000") | date:'EEEE, MMMM dd ,yyyy '}}
+
+                        </p>
+                        <p class="textMain">
+                           {{ items.temp.day}}&deg;C
+                        </p>
+                    </div>
+                    <div class="col-sm-6 ">
+                        <img class="TodayImage" src="http://openweathermap.org/img/w/{{items.weather[0].icon}}.png">
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3"></div>
+                    <table id="weatherTable" class="table table-bordered table-striped col-sm-5">
+                        <tr class="info">
+                            <td>Description</td>
+                            <td>{{items.weather[0].description}}</td>
+                        </tr>
+                        <tr class="info">
+                            <td>Pressure</td>
+                            <td>{{items.pressure}} hpa</td>
+                        </tr>
+                        <tr class="info">
+                            <td>Humidity</td>
+                            <td>{{items.humidity}} %</td>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+
+
+            <!--     <div class="well row">
+
+                      <div class="col-sm-1">
+                          <img  class="TomorrowImage"src="images/{{weatherArray[1].weather[0].icon}}.png">
+                      </div>
+                     <div class="col-sm-8">
+                         Tomorrow
+                     </div>
+                     <div class="col-sm-2">
+                         {{ weatherArray[1].temp.day}}&deg;C
+                     </div>
+
+                 </div>
+                 <div id="push"></div>
+             </div> -->
+
+         </div>
+         <footer id="footer">
+             <div>
+                 <p>&copy; Developed with AngularJs and Twitter Bootstrap</p>
+             </div>
+         </footer>
+
+
+     </div>
+
+
+
+     </body>
+     </html>
